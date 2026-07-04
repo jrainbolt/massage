@@ -34,10 +34,14 @@ Set `measurementId` in `src/config/analytics.ts` to a valid GA4 Measurement ID s
 
 ## Deploy to GitHub Pages
 
-1. Install dependencies with `npm install`.
-2. Update `vite.config.ts`: use `base: '/repository-name/'` for a project site, or keep `base: './'` for portable relative assets.
-3. Run `npm run deploy`.
-4. In the GitHub repository, open **Settings → Pages** and confirm the `gh-pages` branch is selected.
+Deployment is automated by `.github/workflows/deploy-pages.yml`. Every push to `main` installs dependencies, creates the production build, and deploys `dist` with GitHub's official Pages actions.
+
+1. Confirm `vite.config.ts` uses `base: '/repository-name/'` for a project site. This repository uses `base: '/massage/'`.
+2. Push the project to the `main` branch.
+3. In GitHub, open **Settings → Pages** and set **Source** to **GitHub Actions**.
+4. Open the repository's **Actions** tab to monitor the **Deploy to GitHub Pages** workflow.
+
+You can also run the workflow manually from its Actions page using **Run workflow**.
 
 For a custom domain, add a `CNAME` file to `public/` containing the domain, configure DNS with your provider, update the canonical URLs in `index.html`, `public/robots.txt`, and `public/sitemap.xml`, then enable HTTPS in GitHub Pages settings.
 
