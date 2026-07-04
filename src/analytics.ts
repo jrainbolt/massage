@@ -9,7 +9,9 @@ export function initAnalytics() {
   script.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.measurementId}`
   document.head.appendChild(script)
   window.dataLayer = window.dataLayer || []
-  window.gtag = (...args: unknown[]) => window.dataLayer.push(args)
+  window.gtag = function (..._args: unknown[]) {
+    window.dataLayer.push(arguments)
+  }
   window.gtag('js', new Date())
   window.gtag('config', analyticsConfig.measurementId)
 }
